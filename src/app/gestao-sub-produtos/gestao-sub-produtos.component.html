@@ -29,8 +29,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let category of (exportCategorias | async)">
-                                       <td>{{category[0].id}}</td> 
-                                       <td>{{category[0].titulo}}</td>
+                                       <td>{{category.id}}</td> 
+                                       <td>{{category.titulo}}</td>
                                     </tr>                                    
                                 </tbody>
                             </table>
