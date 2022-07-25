@@ -1,0 +1,144 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title ">Informação Geral</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-info card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">credit_card</i>
+                                </div>
+                                <p class="card-category">Valor Total</p>
+                                <h3 class="card-title">15.000
+                                    <small>€</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">payments</i>
+                                </div>
+                                <p class="card-category">Em Dívida</p>
+                                <h3 class="card-title">00,00
+                                    <small>€</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">savings</i>
+                                </div>
+                                <p class="card-category">Liquidado</p>
+                                <h3 class="card-title">00,00
+                                    <small>€</small>
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-buttons">
+                    <button mat-raised-button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target=".bd-adicionarregisto-modal-lg">
+                        <span class="mdc-button__ripple"></span>
+                            <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                        <span class="mdc-button__label">Adicionar Registo</span>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                          <table class="table">
+                              <thead class=" text-primary">
+                                  <th>
+                                      ID
+                                  </th>
+                                  <th>
+                                      Título
+                                  </th>
+                                  <th>
+                                      Valor
+                                  </th>
+                                  <th>
+                                      Data
+                                  </th>
+                                  <th>
+                                      <!-- editar -->
+                                  </th>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>
+                                          1
+                                      </td>
+                                      <td>
+                                          Titulo - Exemplo
+                                      </td>
+                                      <td>
+                                          500€
+                                      </td>
+                                      <td>
+                                          22/02/2020
+                                      </td>
+                                      <td>
+                                        <button mat-raised-button class="btn btn-outline-danger btn-sm pull-right">
+                                            <span class="mdc-button__ripple"></span>
+                                                <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>                                            
+                                        </button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade bd-adicionarregisto-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+            <h5 class="col-12 modal-title text-center">Adicionar Registo</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="p-3">
+                    <div class="form-group">
+                      <label for="labelTitulo">Título</label>
+                      <input type="text" class="form-control" id="inputTitulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="labelValor">Valor</label>
+                        <input type="number" class="form-control" id="inputValor">
+                      </div>
+                    <div class="form-group">
+                      <label for="labelData">Data</label>
+                      <input type="date" class="form-control" id="inputData">
+                    </div>
+                    <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3">Adicionar</button>
+                  </form>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
