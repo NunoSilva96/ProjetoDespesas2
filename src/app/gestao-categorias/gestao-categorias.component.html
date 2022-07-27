@@ -1,6 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="loading" [hidden]="!showLoading">Loading</div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -28,20 +29,16 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let categoria of listaCategorias">
+                                        <td>{{categoria.id}}</td>
+                                        <td>{{categoria.titulo}}</td>
                                         <td>
-                                            1
+                                            <button mat-raised-button class="btn btn-outline-danger btn-sm pull-right">
+                                                <span class="mdc-button__ripple"></span>
+                                                    <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>                                            
+                                            </button>
                                         </td>
-                                        <td>
-                                            Categorias - Exemplo
-                                        </td>
-                                        <td>
-                                          <button mat-raised-button class="btn btn-outline-danger btn-sm pull-right">
-                                              <span class="mdc-button__ripple"></span>
-                                                  <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>                                            
-                                          </button>
-                                        </td>
-                                    </tr>
+                                    </tr>    
                                 </tbody>
                             </table>
                         </div>
@@ -64,11 +61,14 @@
                   <form class="p-3">
                       <div class="form-group">
                         <label for="labelTitulo">Titulo</label>
-                        <input type="text" class="form-control" id="inputTitulo">
+                        <input #inputTituloCategoria type="text" class="form-control" id="inputTitulo">
                       </div>
-                      <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3">Adicionar</button>
+                      <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3" (click)="adicionarCategoira()">Adicionar</button>
                     </form>
               </div>
+              <button id="closeModalButton" [hidden]="true" data-toggle="modal"        
+              data-target=".bd-adicionarcategoria-modal-lg" class="btn btn-default"                          
+             data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

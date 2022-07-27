@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'app/data-service/data.service';
 import { CategoriaModel } from 'app/models/categoria-model';
 import { Observable, of, Subject } from "rxjs";
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -11,15 +12,21 @@ import { Observable, of, Subject } from "rxjs";
 })
 export class GestaoSubProdutosComponent implements OnInit {
   public exportCategorias: Observable<CategoriaModel[]>;
+  showLoading: boolean;
 
   constructor(private dataservice: DataService) { 
-    this.exportCategorias = dataservice.getCategorias();
-
   }
 
   ngOnInit() {
 
-    this.exportCategorias = this.dataservice.getCategorias();
+    this.loadCategorias();
   }
 
+  loadCategorias()
+  {
+    this.showLoading = true;
+    let result = this.dataservice.ObterListaCategorias();
+    this.exportCategorias = result;
+    this.showLoading = false;
+  }
 }

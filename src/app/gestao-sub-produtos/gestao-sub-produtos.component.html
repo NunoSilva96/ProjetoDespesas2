@@ -1,6 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="loading" [hidden]="!showLoading">Loading</div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -28,7 +29,7 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let category of (exportCategorias | async)">
+                                    <tr *ngFor="let category of exportCategorias">
                                        <td>{{category.id}}</td> 
                                        <td>{{category.titulo}}</td>
                                     </tr>                                    

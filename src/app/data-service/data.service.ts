@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CategoriaModel } from 'app/models/categoria-model';
+import { ProdutoModel } from 'app/models/produto-model';
+import { ProdutoCategoriasModel } from 'app/models/produto-categorias-model'
+import { FinanciamentoRegistosTotalModel } from 'app/models/financiamento-registos-total-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
+  headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
   private REST_API_SERVER = "https://localhost:7134";
 
   constructor(private httpClient: HttpClient) { }
 
-  public ObterListaCategorias(): Observable<any>{
-    return this.httpClient.get(this.REST_API_SERVER + "/ObterListaCategorias");
+  public ObterListaCategorias(): Observable<CategoriaModel[]>{
+    return this.httpClient.get<any[]>(this.REST_API_SERVER + "/ObterListaCategorias");
   }
 
   public ObterCategoriaPorId(id:number){
@@ -25,8 +28,17 @@ export class DataService {
     return this.httpClient.delete(this.REST_API_SERVER + "/Categoria/" + id);
   }
 
-  public ObterListaProdutos(){
-    return this.httpClient.get(this.REST_API_SERVER + "/ObterListaProdutos");
+  public AdicionarCategoria(categoria: CategoriaModel)
+  {
+    return this.httpClient.post<any[]>(this.REST_API_SERVER + "/Categoria", categoria, {headers: this.headers});
+  }
+
+  public ObterListaProdutos(): Observable<ProdutoModel[]>{
+    return this.httpClient.get<any[]>(this.REST_API_SERVER + "/ObterListaProdutos");
+  }
+
+  public ObterListaProdutosComCategorias(): Observable<ProdutoCategoriasModel[]>{
+    return this.httpClient.get<any[]>(this.REST_API_SERVER + "/ObterListaProdutosComCategorias");
   }
 
   public ObterProdutoPorId(id:number){
@@ -37,12 +49,8 @@ export class DataService {
     return this.httpClient.delete(this.REST_API_SERVER + "/Produto/" + id);
   }
 
-  getCategory3(): Observable<CategoriaModel> {
-    const URL = `${this.REST_API_SERVER}/ObterCategoriaPorId/3`;
-    return this.httpClient.get<CategoriaModel>(URL);
-   }
-
-   getCategorias(): Observable<CategoriaModel[]> {
-    return this.httpClient.get<any[]>(this.REST_API_SERVER + '/ObterListaCategorias');
+  public ObterRegistosFinanciamentoTotal() : Observable<FinanciamentoRegistosTotalModel[]>
+  {
+    return this.httpClient.get<any[]>(this.REST_API_SERVER + "/ObterListaRegistosFinanciamentoTotal");
   }
 }

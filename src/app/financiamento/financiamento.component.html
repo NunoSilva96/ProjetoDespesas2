@@ -1,6 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
       <div class="row">
+          <div class="loading" [hidden]="!showLoading">Loading</div>
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-danger">
@@ -15,7 +16,7 @@
                                     <i class="material-icons">credit_card</i>
                                 </div>
                                 <p class="card-category">Valor Total</p>
-                                <h3 class="card-title">15.000
+                                <h3 class="card-title">{{valorFinanciado}}
                                     <small>€</small>
                                 </h3>
                             </div>
@@ -30,7 +31,7 @@
                                     <i class="material-icons">payments</i>
                                 </div>
                                 <p class="card-category">Em Dívida</p>
-                                <h3 class="card-title">00,00
+                                <h3 class="card-title">{{valorEmDivida}}
                                     <small>€</small>
                                 </h3>
                             </div>
@@ -45,7 +46,7 @@
                                     <i class="material-icons">savings</i>
                                 </div>
                                 <p class="card-category">Liquidado</p>
-                                <h3 class="card-title">00,00
+                                <h3 class="card-title">{{valorLiquidado}}
                                     <small>€</small>
                                 </h3>
                             </div>
@@ -72,10 +73,10 @@
                                   <th>
                                       Título
                                   </th>
-                                  <th>
+                                  <th class="text-center">
                                       Valor
                                   </th>
-                                  <th>
+                                  <th class="text-center">
                                       Data
                                   </th>
                                   <th>
@@ -83,26 +84,18 @@
                                   </th>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <td>
-                                          1
-                                      </td>
-                                      <td>
-                                          Titulo - Exemplo
-                                      </td>
-                                      <td>
-                                          500€
-                                      </td>
-                                      <td>
-                                          22/02/2020
-                                      </td>
-                                      <td>
+                                <tr *ngFor="let registo of listaRegistosFinanciamento">
+                                    <td>{{registo.id}}</td>
+                                    <td>{{registo.titulo}}</td>
+                                    <td class="text-center">{{registo.valor}} €</td>
+                                    <td class="text-center">{{registo.data_Pagamento |  date : 'shortDate'}}</td>
+                                    <td>
                                         <button mat-raised-button class="btn btn-outline-danger btn-sm pull-right">
                                             <span class="mdc-button__ripple"></span>
                                                 <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>                                            
                                         </button>
                                       </td>
-                                  </tr>
+                                </tr>
                               </tbody>
                           </table>
                       </div>
@@ -135,7 +128,7 @@
                       <label for="labelData">Data</label>
                       <input type="date" class="form-control" id="inputData">
                     </div>
-                    <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3">Adicionar</button>
+                    <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3" >Adicionar</button>
                   </form>
             </div>
         </div>

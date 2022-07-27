@@ -1,6 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="loading" [hidden]="!showLoading">Loading</div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -31,12 +32,19 @@
                                     </th>
                                 </thead>
                                 <tbody> 
-                                    <tr *ngFor="let category of (exportCategorias | async)">
-                                        <td>{{category.id}}</td>
-                                        <td>{{category.titulo}}</td>
-                                        </tr>                                     
+                                    <tr *ngFor="let produto of listaProdutos">
+                                        <td>{{produto.id}}</td>
+                                        <td>{{produto.titulo}}</td>
+                                        <td>{{produto.categoria}}</td>
+                                        <td>
+                                            <button mat-raised-button class="btn btn-outline-danger btn-sm pull-right">
+                                                <span class="mdc-button__ripple"></span>
+                                                    <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>                                            
+                                            </button>
+                                        </td>
+                                    </tr>                                   
                                 </tbody>          
-                            </table>
+                            </table>                            
                         </div>
                     </div>
                 </div>
@@ -62,7 +70,10 @@
                       <div class="form-group">
                         <label for="dropdownCategoria">Categoria</label>
                         <select class="form-control" id="dropdownCategoria">
-                            
+                            <option selected>Escolha uma Categoria</option>
+                            <option *ngFor="let categoria of listaCategorias" value="{{categoria.id}}">                                
+                                {{categoria.titulo}}
+                            </option>     
                         </select>
                       </div>
                       <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3">Adicionar</button>

@@ -7,6 +7,11 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { CommonModule } from '@angular/common';
+import { GestaoProdutosComponent } from './gestao-produtos/gestao-produtos.component';
+import { GestaoCategoriasComponent } from './gestao-categorias/gestao-categorias.component';
+import { FinanciamentoComponent } from './financiamento/financiamento.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -17,13 +22,16 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    CommonModule    
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
+    GestaoProdutosComponent,
+    GestaoCategoriasComponent,
+    FinanciamentoComponent
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
