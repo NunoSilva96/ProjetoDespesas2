@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../data-service/data.service';
 import { CategoriaModel } from 'app/models/categoria-model';
 import { ProdutoCategoriasModel } from 'app/models/produto-categorias-model'
+import { ProdutoModel } from 'app/models/produto-model';
 import { Observable, of, Subject } from "rxjs";
-import { takeUntil, map } from "rxjs/operators";
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,9 +16,16 @@ export class GestaoProdutosComponent implements OnInit {
   listaCategorias: CategoriaModel[];
   listaProdutos: ProdutoCategoriasModel[];
   showLoading: boolean;
-  constructor(private dataService: DataService) { 
+  @Input() public produtoParaAdicionar: ProdutoModel = {id: 0, titulo:'', fk_categoriaID: 0};
+  categoriaSelecionada = 0;
 
-    
+  @ViewChild('inputTitulo')
+  inputTitulo: ElementRef;
+
+  @ViewChild('dropdownCategoria')
+  dropdownCategoria: ElementRef;
+
+  constructor(private dataService: DataService) { 
   }
 
   ngOnInit() {
@@ -52,4 +59,37 @@ export class GestaoProdutosComponent implements OnInit {
       console.log("Erro ao carregar as categorias!");
     });
   }
+
+  adicionarProduto()
+  { 
+    this.showLoading = true;
+    let tituloParaAdicionar = ((document.getElementById("inputTitulo") as HTMLInputElement).value);    
+    let categoriaParaAdicionar = Number(this.categoriaSelecionada);
+    console.log(categoriaParaAdicionar);
+
+    this.produtoParaAdicionar.fk_categoriaID = categoriaParaAdicionar;
+    this.produtoParaAdicionar.titulo = tituloParaAdicionar;
+
+    this.dataService.AdicionarProduto(this.produtoParaAdicionar)
+    .subscribe((result) => {
+      this.showLoading = false;
+      this.limparCamposFecharModal();
+      //Alterar este alert para algo como deve ser. Por ex: notificação
+      alert("Produto Adicionado com sucesso!")
+      this.carregarListaProdutos();
+    }, error => {
+      console.log("Erro ao inserir o produto")
+      this.showLoading = false;
+    });
+  }
+
+  limparCamposFecharModal()
+  {
+    document.getElementById("closeModalButton").click();   
+  }
+
+  onSelected(value:number): void {
+		this.categoriaSelecionada = value;
+	}
+  
 }

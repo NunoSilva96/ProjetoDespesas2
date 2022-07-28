@@ -69,16 +69,19 @@
                       </div>
                       <div class="form-group">
                         <label for="dropdownCategoria">Categoria</label>
-                        <select class="form-control" id="dropdownCategoria">
+                        <select #categoria class="form-control" id="dropdownCategoria" (change)="onSelected(categoria.value)">
                             <option selected>Escolha uma Categoria</option>
                             <option *ngFor="let categoria of listaCategorias" value="{{categoria.id}}">                                
                                 {{categoria.titulo}}
                             </option>     
                         </select>
                       </div>
-                      <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3">Adicionar</button>
+                      <button type="button" class="btn btn-outline-success btn-sm pull-right mb-3" (click)="adicionarProduto()">Adicionar</button>
                     </form>
               </div>
+              <button id="closeModalButton" [hidden]="true" data-toggle="modal"        
+              data-target=".bd-adicionarproduto-modal-lg" class="btn btn-default"                          
+             data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

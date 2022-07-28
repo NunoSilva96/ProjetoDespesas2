@@ -45,6 +45,11 @@ export class DataService {
     return this.httpClient.get(this.REST_API_SERVER + "/ObterProdutoPorId/" + id);
   }
 
+  public AdicionarProduto(produto: ProdutoModel)
+  {
+    return this.httpClient.post<any[]>(this.REST_API_SERVER + "/Produto", produto, {headers: this.headers});
+  }
+
   public ApagarProdutoPorId(id:number){
     return this.httpClient.delete(this.REST_API_SERVER + "/Produto/" + id);
   }
